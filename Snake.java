@@ -116,36 +116,37 @@ class GamePanel extends JPanel implements KeyListener, ActionListener {
             snakeX[i] = snakeX[i - 1];
             snakeY[i] = snakeY[i - 1];
         }
-    // update movement logic based on direction
-    switch (direction) {
-        case 'U':
-            snakeY[0] -= 25;
-            break;
-        case 'D':
-            snakeY[0] += 25;
-            break;
-        case 'L':
-            snakeX[0] -= 25;
-            break;
-        case 'R':
-            snakeX[0] += 25;
-            break;
+        // update movement logic based on direction
+        switch (direction) {
+            case 'U':
+                snakeY[0] -= 25;
+                break;
+            case 'D':
+                snakeY[0] += 25;
+                break;
+            case 'L':
+                snakeX[0] -= 25;
+                break;
+            case 'R':
+                snakeX[0] += 25;
+                break;
+        }
+
+        // wrap around screen boundaries
+        if (snakeX[0] < 0) {
+            snakeX[0] = 700;
+        }
+        if (snakeX[0] >= getWidth() - 25) {
+            snakeX[0] = 0;
+        }
+        if (snakeY[0] < 0) {
+            snakeY[0] = 525;
+        }
+        if (snakeY[0] > 525) {
+            snakeY[0] = 0;
+        }
     }
 
-    // wrap around screen boundaries
-    if (snakeX[0] < 0) {
-        snakeX[0] = 700;
-    }
-    if (snakeX[0] > 700) {
-        snakeX[0] = 0;
-    }
-    if (snakeY[0] < 0) {
-        snakeY[0] = 525;
-    }
-    if (snakeY[0] > 525) {
-        snakeY[0] = 0;
-    }
-}
 
 // spawn a new apple at a random position
 public void spawnApple() {
